@@ -3,4 +3,9 @@ use anchor_lang::prelude::*;
 
 //STEP 2 : Add the public module and the program trait
 #[program]
-pub mod solana_counter {}
+pub mod solana_counter {
+    //STEP 3 : Add a initialse funtion
+    pub fn initialise() -> Result<()> {
+        Ok(())
+    }
+}
