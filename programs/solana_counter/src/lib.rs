@@ -9,3 +9,7 @@ pub mod solana_counter {
         Ok(())
     }
 }
+
+// STEP 4: Create the accounts
+#[derive(Accounts)]
+pub struct Initialise {}
