@@ -8,10 +8,14 @@ pub mod solana_counter {
     //STEP 3 : Add a initialse funtion
     //STEP 5: Add Initialise as context
     pub fn initialise(ctx: Context<Initialise>) -> Result<()> {
+        //STEP7 : Read User from context
+        let user = &ctx.accounts.user;
         Ok(())
     }
 }
 
 // STEP 4: Create the accounts
 #[derive(Accounts)]
-pub struct Initialise {}
+pub struct Initialise {
+    pub user: Signer<'info>,
+}
