@@ -1,5 +1,21 @@
 //STEP 1: Add the solana prelude
 use anchor_lang::prelude::*;
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+// STEP 4: Create the accounts
+#[derive(Accounts)]
+pub struct Initialise<'info> {
+    pub user: Signer<'info>,
+    //STEP 8: Add payer and user
+    #[account(init,payer = user , space = 8 + 8)]
+    pub counter: Account<'info, Counter>,
+    pub system_program: Program<'info, System>,
+}
+
+#[account]
+pub struct Counter {
+    pub count: u64,
+}
 
 //STEP 2 : Add the public module and the program trait
 #[program]
@@ -10,21 +26,8 @@ pub mod solana_counter {
     pub fn initialise(ctx: Context<Initialise>) -> Result<()> {
         //STEP7 : Read User from context
         let user = &ctx.accounts.user;
+        let counter = &mut ctx.accounts.counter;
+        counter.count = 0;
         Ok(())
     }
-}
-
-// STEP 4: Create the accounts
-#[derive(Accounts)]
-pub struct Initialise<'info> {
-    pub user: Signer<'info>,
-    //STEP 8: Add payer and user
-    #[account(init,payer = user , space = 8+ 8)]
-    pub counter: Account<'info, Counter>,
-    pub system_program: Program<'info, System>,
-}
-
-#[account]
-pub struct Counter {
-    pub count: u64,
 }
