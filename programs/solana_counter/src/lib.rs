@@ -5,6 +5,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 // STEP 4: Create the accounts
 #[derive(Accounts)]
 pub struct Initialise<'info> {
+    #[account(mut)]
     pub user: Signer<'info>,
     //STEP 8: Add payer and user
     #[account(init,payer = user , space = 8 + 8)]
@@ -20,7 +21,7 @@ pub struct Counter {
 //STEP 2 : Add the public module and the program trait
 #[program]
 pub mod solana_counter {
-
+    use super::*;
     //STEP 3 : Add a initialse funtion
     //STEP 5: Add Initialise as context
     pub fn initialise(ctx: Context<Initialise>) -> Result<()> {
