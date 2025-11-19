@@ -16,6 +16,15 @@ pub mod solana_counter {
 
 // STEP 4: Create the accounts
 #[derive(Accounts)]
-pub struct Initialise {
+pub struct Initialise<'info> {
     pub user: Signer<'info>,
+    //STEP 8: Add payer and user
+    #[account(init,payer = user , space = 8+ 8)]
+    pub counter: Account<'info, Counter>,
+    pub system_program: Program<'info, System>,
+}
+
+#[account]
+pub struct Counter {
+    pub count: u64,
 }
