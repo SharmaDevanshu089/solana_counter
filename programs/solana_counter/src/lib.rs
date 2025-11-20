@@ -4,7 +4,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 // STEP 4: Create the accounts
 #[derive(Accounts)]
-pub struct Initialise<'info> {
+pub struct Initialize<'info> {
     #[account(mut)]
     pub user: Signer<'info>,
     //STEP 8: Add payer and user
@@ -24,7 +24,7 @@ pub mod solana_counter {
     use super::*;
     //STEP 3 : Add a initialse funtion
     //STEP 5: Add Initialise as context
-    pub fn initialise(ctx: Context<Initialise>) -> Result<()> {
+    pub fn initialisz(ctx: Context<Initialise>) -> Result<()> {
         //STEP7 : Read User from context
         let user = &ctx.accounts.user;
         let counter = &mut ctx.accounts.counter;
