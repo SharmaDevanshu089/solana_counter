@@ -24,7 +24,7 @@ pub mod solana_counter {
     use super::*;
     //STEP 3 : Add a initialse funtion
     //STEP 5: Add Initialise as context
-    pub fn initialisz(ctx: Context<Initialise>) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
         //STEP7 : Read User from context
         let user = &ctx.accounts.user;
         let counter = &mut ctx.accounts.counter;
