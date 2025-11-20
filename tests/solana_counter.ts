@@ -13,4 +13,12 @@ describe("solana_counter", () => {
     const tx = await program.methods.initialize().rpc();
     console.log("Your transaction signature", tx);
   });
+  it("Can Incriment ", async() =>{
+    const program = anchor.workspace.solanaCounter;
+    const [counterPda] = anchor.web3.PublicKey.findProgramAddressSync([Buffer.from("counter"), program.provider.publicKey.toBuffer()],program.programId);
+    const tx = await program.methods.increment().accounts({ counter: counterPda,}).rpc();
+    console.log("Increment tx signature:", tx);
+    const counterAccount = await program.account.counter.fetch(counterPda);
+    console.log("Counter after increment:", counterAccount.count);
+  });
 });
