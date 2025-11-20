@@ -8,7 +8,7 @@ pub struct Initialize<'info> {
     #[account(mut)]
     pub user: Signer<'info>,
     //STEP 8: Add payer and user
-    #[account(init,payer = user , space = 8 + 8)]
+    #[account(init,seeds = [b"counter" , user.key().as_ref()],bump,payer = user, space = 8 + 8)]
     pub counter: Account<'info, Counter>,
     pub system_program: Program<'info, System>,
 }
