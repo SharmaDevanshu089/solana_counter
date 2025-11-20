@@ -13,7 +13,10 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 #[derive(Accounts)]
-pub struct Increment {}
+pub struct Increment<'info> {
+    #[account(mut)]
+    pub counter: Account<'info, Counter>,
+}
 
 pub fn increment(ctx: Context<Increment>) -> Result<()> {
     let counter = &mut ctx.accounts.counter;
