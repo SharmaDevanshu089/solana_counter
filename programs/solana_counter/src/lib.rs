@@ -18,11 +18,6 @@ pub struct Increment<'info> {
     pub counter: Account<'info, Counter>,
 }
 
-pub fn increment(ctx: Context<Increment>) -> Result<()> {
-    let counter = &mut ctx.accounts.counter;
-    counter.count += 1;
-    Ok(())
-}
 #[account]
 pub struct Counter {
     pub count: u64,
@@ -39,6 +34,12 @@ pub mod solana_counter {
         let user = &ctx.accounts.user;
         let counter = &mut ctx.accounts.counter;
         counter.count = 0;
+        Ok(())
+    }
+
+    pub fn increment(ctx: Context<Increment>) -> Result<()> {
+        let counter = &mut ctx.accounts.counter;
+        counter.count += 1;
         Ok(())
     }
 }
