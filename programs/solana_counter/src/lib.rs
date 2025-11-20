@@ -12,7 +12,7 @@ pub struct Initialize<'info> {
     pub counter: Account<'info, Counter>,
     pub system_program: Program<'info, System>,
 }
-
+pub fn increment(ctx: Context<Increment>) -> Result<()> {}
 #[account]
 pub struct Counter {
     pub count: u64,
