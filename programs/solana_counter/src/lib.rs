@@ -1,6 +1,6 @@
 //STEP 1: Add the solana prelude
 use anchor_lang::prelude::*;
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("FnVAqKWhENmtGWnRowegRX8A4GSTYgsG15sEBdmnF3Xg");
 
 // STEP 4: Create the accounts
 #[derive(Accounts)]
